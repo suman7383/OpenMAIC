@@ -606,6 +606,139 @@ export const TTS_PROVIDERS: Record<TTSProviderId, TTSProviderConfig> = {
     supportedFormats: ['mp3', 'wav', 'pcm'],
   },
 
+  'kokoro-tts': {
+    id: 'kokoro-tts',
+    name: 'Kokoro TTS',
+    requiresApiKey: true,
+    icon: '/logos/kokoro.svg',
+    voices: [
+      // Recommended
+      {
+        id: 'af_heart',
+        name: 'Heart US',
+        language: 'en-US',
+        gender: 'female',
+        description: 'voiceAfHeart',
+      },
+      {
+        id: 'am_michael',
+        name: 'Michael US',
+        language: 'en-US',
+        gender: 'male',
+        description: 'voiceAmMichael',
+      },
+      {
+        id: 'bf_emma',
+        name: 'Emma UK',
+        language: 'en-UK',
+        gender: 'female',
+        description: 'voiceBfEmma',
+      },
+      {
+        id: 'bm_george',
+        name: 'George UK',
+        language: 'en-UK',
+        gender: 'male',
+        description: 'voiceBmGeorge',
+      },
+
+      // US Female
+      {
+        id: 'af_bella',
+        name: 'Bella US',
+        language: 'en-US',
+        gender: 'female',
+        description: 'voiceAfBella',
+      },
+      {
+        id: 'af_nova',
+        name: 'Nova US',
+        language: 'en-US',
+        gender: 'female',
+        description: 'voiceAfNova',
+      },
+      {
+        id: 'af_sarah',
+        name: 'Sarah US',
+        language: 'en-US',
+        gender: 'female',
+        description: 'voiceAfSarah',
+      },
+      {
+        id: 'af_sky',
+        name: 'Sky US',
+        language: 'en-US',
+        gender: 'female',
+        description: 'voiceAfSky',
+      },
+
+      // US Male
+      {
+        id: 'am_adam',
+        name: 'Adam US',
+        language: 'en-US',
+        gender: 'male',
+        description: 'voiceAmAdam',
+      },
+      {
+        id: 'am_eric',
+        name: 'Eric US',
+        language: 'en-US',
+        gender: 'male',
+        description: 'voiceAmEric',
+      },
+      {
+        id: 'am_liam',
+        name: 'Liam US',
+        language: 'en-US',
+        gender: 'male',
+        description: 'voiceAmLiam',
+      },
+
+      // UK Female
+      {
+        id: 'bf_alice',
+        name: 'Alice UK',
+        language: 'en-UK',
+        gender: 'female',
+        description: 'voiceBfAlice',
+      },
+      {
+        id: 'bf_lily',
+        name: 'Lily UK',
+        language: 'en-UK',
+        gender: 'female',
+        description: 'voiceBfLily',
+      },
+      {
+        id: 'bf_v0isabella',
+        name: 'Isabella UK',
+        language: 'en-UK',
+        gender: 'female',
+        description: 'voiceBfIsabella',
+      },
+
+      // UK Male
+      {
+        id: 'bm_daniel',
+        name: 'Daniel UK',
+        language: 'en-UK',
+        gender: 'male',
+        description: 'voiceBmDaniel',
+      },
+      {
+        id: 'bm_lewis',
+        name: 'Lewis UK',
+        language: 'en-UK',
+        gender: 'male',
+        description: 'voiceBmLewis',
+      },
+    ],
+    supportedFormats: ['mp3', 'wav'],
+    defaultBaseUrl: 'http://localhost:8880/v1',
+    speedRange: { min: 0.5, max: 2.0, default: 1.0 },
+  },
+
   'browser-native-tts': {
     id: 'browser-native-tts',
     name: '浏览器原生 (Web Speech API)',

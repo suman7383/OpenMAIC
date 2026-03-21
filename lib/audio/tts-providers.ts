@@ -130,6 +130,9 @@ export async function generateTTS(
     case 'qwen-tts':
       return await generateQwenTTS(config, text);
 
+    case 'kokoro-tts':
+      return await generateKokoroTTS(config, text);
+
     case 'browser-native-tts':
       throw new Error(
         'Browser Native TTS must be handled client-side using Web Speech API. This provider cannot be used on the server.',
@@ -313,6 +316,44 @@ async function generateQwenTTS(config: TTSModelConfig, text: string): Promise<TT
   return {
     audio: new Uint8Array(arrayBuffer),
     format: 'wav', // Qwen3 TTS returns WAV format
+  };
+}
+
+/**
+ * Kokoro-fastapi TTS implementation (direct API call with explicit UTF-8 encoding)
+ * Kokoro TTS seamlessly integrates with OpenAI APIs
+ */
+async function generateKokoroTTS(
+  config: TTSModelConfig,
+  text: string,
+): Promise<TTSGenerationResult> {
+  const baseUrl = config.baseUrl || TTS_PROVIDERS['kokoro-tts'].defaultBaseUrl;
+
+  // Use kokoro-tts for best quality and intelligent realtime applications
+  const response = await fetch(`${baseUrl}/audio/speech`, {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${config.apiKey}`,
+      'Content-Type': 'application/json; charset=utf-8',
+    },
+    body: JSON.stringify({
+      model: 'kokoro',
+      input: text,
+      voice: config.voice,
+      speed: config.speed || 1.0,
+      response_format: 'mp3',
+    }),
+  });
+
+  if (!response.ok) {
+    const error = await response.json().catch(() => ({ error: response.statusText }));
+    throw new Error(`Kokoro-fastapi TTS API error: ${error.error?.message || response.statusText}`);
+  }
+
+  const arrayBuffer = await response.arrayBuffer();
+  return {
+    audio: new Uint8Array(arrayBuffer),
+    format: 'mp3',
   };
 }
 
