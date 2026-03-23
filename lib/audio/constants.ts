@@ -966,6 +966,7 @@ export const DEFAULT_TTS_VOICES: Record<TTSProviderId, string> = {
   'azure-tts': 'zh-CN-XiaoxiaoNeural',
   'glm-tts': 'tongtong',
   'qwen-tts': 'Cherry',
+  'kokoro-tts': 'am_liam',
   'browser-native-tts': 'default',
 };
 
